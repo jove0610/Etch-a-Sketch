@@ -1,0 +1,49 @@
+body {
+    background-color: lightgray;
+    font-family: Arial, Monospace;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 500px;
+}
+
+/*  Header  */
+h1 {
+    font-size: 42px;
+    padding: 30px;
+}
+
+/*  Button Section  */
+button {
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#resetButton {
+    margin-right: 40px;
+}
+
+/*  Sketch Pad Section */
+#sketchPadSection {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#sketchPadBox {
+    background-color: lightcyan;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-bottom: 120px;
+    flex-wrap: wrap;
+}
+
+.box {
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+
