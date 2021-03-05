@@ -1,22 +1,20 @@
-//Create a variable for dimension and box color of sketchpad
-let num = 5;
+//Create variables for dimension and box color of sketchpad
+let num = 16;
 let boxWidth = (500/num) + 'px';
 let boxHeight = (500/num) + 'px';
-let hoverColor = '#FFFFFF';
 
 //Create function that adds sketchpad
 function createSketch() {
-    let sketchPadBox = document.querySelector('#sketchPadBox');
-    let div = document.createElement('div');
+    const sketchPadBox = document.querySelector('#sketchPadBox');
+    let div;
     for (let i = 0; i < (num*num); i++) {
         div = document.createElement('div');
         div.classList.add('box' + i);
         div.style.width = boxWidth;
         div.style.height = boxHeight;
-        div.style.border = '1px solid green';
+        div.style.border = '1px solid black';
         div.style.boxSizing = 'border-box';
-        sketchPadBox.appendChild(div);
-        
+        sketchPadBox.appendChild(div);        
     }
 }
 
@@ -30,12 +28,14 @@ function removeSketch() {
 //Creates button for resizing the sketchpad
 const sizeBtn = document.querySelector('#changeSizeButton');
 sizeBtn.onclick = () => {
-    let input = 2;
+    let input;
     while (true) {
-        input = Number(prompt('Enter new size:'));
-        if (input == null) {    //If Cancel button is clicked
+        input = prompt('Enter new size:');
+        if (input == null) {    //If Cancel button is clicked          
             break;
-        } else if (input == 0) {    //If input is blank
+        } 
+        input = Number(input);
+        if (input == 0) {    //If input is 0 or blank
             alert('Enter a digit from 1-64 range.');
             continue;
         } else if (input > 0 && input <= 64) {
@@ -44,7 +44,7 @@ sizeBtn.onclick = () => {
             boxHeight = (500/num) + 'px';   
             removeSketch();
             createSketch();
-            hover();
+            changeBackgroundColorOnHover();
             break;              
         }          
     alert('Enter a digit from 1-64 range.')
@@ -61,41 +61,29 @@ function getRandomColor() {
     return color;
 }
 
-createSketch();
-hover();
-//Create variable for each SketchBox
-
-
-function hover() {
-
+//Create function that changed SketchBox div background color
+//to random on hover and maintains the background color
+function changeBackgroundColorOnHover() {
     let boxClass = '.box'
-    let loopName = 'sketchPad'
+    let loopName;
     for (let i = 0; i < (num*num); i++) {
-    
-
         boxClass = '.box' + i
-        loopName = 'sketchPad' + i
-    
-        loopName = document.querySelector(boxClass);
-    
+        loopName = document.querySelector(boxClass);   
         loopName.addEventListener('mouseover', (e) => {   
             className = "." + e.target.className;
-            console.log(className);
             let changeColor = document.querySelector(className);
-            console.log(changeColor);
             changeColor.style.backgroundColor = getRandomColor();
-            console.log('hello');
         });
     }
 }
 
-//Create a clear button that removes colors from all Sketch Box
+//Create a clear button that removes the colors on sketchpad
+const clearBtn = document.querySelector('#clearButton');
+clearBtn.onclick = () => {
+    removeSketch();
+    createSketch();
+    changeBackgroundColorOnHover();
+}
 
-
-
-
-
-
-color = getRandomColor();
-
-console.log(color);
+createSketch();
+changeBackgroundColorOnHover();

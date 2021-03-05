@@ -20,7 +20,7 @@ button {
     cursor: pointer;
 }
 
-#resetButton {
+#clearButton {
     margin-right: 40px;
 }
 
@@ -32,7 +32,7 @@ button {
 }
 
 #sketchPadBox {
-    background-color: lightcyan;
+    background-color: white;
     height: 500px;
     width: 500px;
     display: flex;
